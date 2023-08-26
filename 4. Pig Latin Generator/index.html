@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/82827c0659.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="style.css" />
+    <title>Latin Pig Generator</title>
+  </head>
+  <body>
+    <!-- Explanation -->
+    <div class="explanation" id="explanation">
+      <header>
+        <h2>Pig Latin Rules</h2>
+        <button id="close-explanation">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </header>
+      <ol class="rules-list">
+        <li>
+          <p class="rule">
+            If a word starts with a consonant and a vowel, put the first letter
+            of the word at the end of the word and add "ay."
+          </p>
+          <p class="rule-example">Example: Happy = appyh + ay = appyhay</p>
+        </li>
+        <li>
+          <p class="rule">
+            If a word starts with two consonants move the two consonants to the
+            end of the word and add "ay."
+          </p>
+          <p class="rule-example">Example: Child = Ildch + ay = Ildchay</p>
+        </li>
+        <li>
+          <p class="rule">
+            If a word starts with a vowel add the word "way" at the end of the
+            word.
+          </p>
+          <p class="rule-example">
+            Example: Awesome = Awesome +way = Awesomeway
+          </p>
+        </li>
+      </ol>
+    </div>
+
+    <button id="open-explanation">
+      <i class="fa-solid fa-gear"></i>
+    </button>
+
+    <h1>Latin Pig Generator</h1>
+    <div class="container">
+      <textarea
+        id="text-to-translate"
+        cols="70"
+        rows="10"
+        placeholder="Type text here..."
+      ></textarea>
+      <button class="translated-button" id="translated-button">
+        Translate
+      </button>
+      <textarea
+        id="translated-text"
+        cols="70"
+        rows="10"
+        placeholder="Pig Latin will be here"
+      ></textarea>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
