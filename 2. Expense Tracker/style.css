@@ -1,0 +1,97 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 0;
+  margin: 0;
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #eee;
+}
+
+.container {
+  background-color: #fff;
+  padding: 36px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+}
+
+.transactions {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 32px;
+  gap: 32px;
+}
+
+.transactions ul {
+  padding-left: 0;
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.transaction {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.money-text {
+  font-size: 20px;
+  font-size: 700;
+}
+
+.remove-transaction-btn {
+  width: 24px;
+  height: 24px;
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: 45%;
+  border: none;
+  color: #fff;
+  background-color: #ef5050;
+  cursor: pointer;
+}
+
+.remove-transaction-btn:active {
+  transform: scale(0.9);
+}
+
+.add-transaction {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.transaction-input {
+  flex: 0.5;
+  padding: 12px;
+  border-radius: 15px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  border: 2px #eee solid;
+  outline-width: 4px;
+  outline-color: #adadad;
+}
+
+.add-transaction button {
+  padding: 12px;
+  border-radius: 15px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  border: 2px #eee solid;
+  outline-width: 4px;
+  outline-color: #adadad;
+  background-color: #fff;
+  color: #6b6b6b;
+  cursor: pointer;
+}
+
+.add-transaction button:active {
+  transform: scale(0.95);
+}
