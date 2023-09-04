@@ -1,0 +1,141 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #ececec;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 24px;
+  margin-bottom: 0;
+}
+
+h1 {
+  text-align: center;
+  width: 300px;
+  margin-bottom: 32px;
+}
+
+h2 {
+  font-weight: 600;
+}
+
+h3 {
+  font-weight: 400;
+}
+
+.container {
+  background-color: #fff;
+  padding: 48px;
+  border-radius: 12px 12px 0 0;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: calc(100vh - 24px);
+  overflow: hidden;
+}
+
+.choose-option {
+  text-align: center;
+}
+
+.options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.options button {
+  background-color: transparent;
+  font-size: 64px;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+.options button:hover {
+  opacity: 0.75;
+}
+
+.options button:active {
+  transform: scale(0.97);
+}
+
+.turns {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.turns ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.turns-list {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 16px;
+}
+
+.turns-list li {
+  font-size: 32px;
+}
+
+.turns-list .loss,
+.turns-list .draw {
+  opacity: 0.5;
+  transform: scale(0.8);
+}
+
+.no-highlight {
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-text-select: none;
+  -webkit-user-select: none;
+}
+
+@media (max-width: 460px) {
+  body {
+    background-color: #fff;
+  }
+
+  h1 {
+    width: 100%;
+  }
+
+  .container {
+    box-shadow: none;
+    padding: 0;
+  }
+}
+
+@media (max-width: 340px) {
+  .container {
+    box-shadow: none;
+    padding: 16px;
+  }
+
+  .options button {
+    font-size: 36px;
+  }
+
+  .turns-list li {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 285px) {
+  h3 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+  }
+}
