@@ -80,7 +80,7 @@ li.item .item-checkbox {
   cursor: pointer;
 }
 
-li.item .item-checkbox:checked ~ .item-text {
+li.item .item-checkbox.checked ~ .item-text {
   text-decoration: line-through;
   color: #979797;
 }

@@ -1,22 +1,22 @@
 const hoursEl = document.getElementById('hours');
 const minutesEl = document.getElementById('minutes');
 const secondsEl = document.getElementById('seconds');
-const milisecondsEl = document.getElementById('miliseconds');
+const milisecondsEl = document.getElementById('milliseconds');
 
 const timeZone = document.getElementById('time-zone');
 
 setTimeZone();
-updateMiliseconds();
+updateMilliseconds();
 updateTime();
 
 function setTimeZone() {
   timeZone.innerHTML = Intl.DateTimeFormat().resolvedOptions().timeZone;
 }
 
-function updateMiliseconds() {
+function updateMilliseconds() {
   const currentTime = new Date();
   const milisecondsStr = currentTime.getMilliseconds().toString();
-  milisecondsEl.innerHTML = milisecondsStr.slice(0, 2);
+  milisecondsEl.innerHTML = milisecondsStr.slice(0, 3);
 }
 
 function updateTime() {
@@ -36,5 +36,5 @@ function updateTime() {
   }
 }
 
-setInterval(updateMiliseconds, 100);
+setInterval(updateMilliseconds, 1);
 setInterval(updateTime, 500);

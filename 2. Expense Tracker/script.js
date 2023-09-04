@@ -3,78 +3,87 @@ const balanceNumber = document.getElementById('balance-number');
 const incomeList = document.getElementById('income-list');
 const outcomeList = document.getElementById('outcome-list');
 
-const transactionInput = document.getElementById('transaction-input');
+const transactionNumber = document.getElementById('transaction-number-input');
+const transactionCategory = document.getElementById(
+  'transaction-category-input'
+);
 const addTransactionBtn = document.getElementById('add-transaction-btn');
 
-let transactionValues =
-  JSON.parse(localStorage.getItem('transactionsValues')) ?? [];
-
-if (transactionValues.length > 0) {
-  displayAllTransactions();
-}
-
-function displayAllTransactions() {
-  transactionValues.forEach((item) => {
-    addTransaction(item);
-  });
-}
+let transactionMap = new Map();
 
 updateBalance();
 
-function addTransaction(moneyValue) {
+// Function
+
+function addTransaction(mapKey, mapValue) {
   const listItem = document.createElement('li');
-  const moneyText = document.createElement('span');
+  const text = document.createElement('span');
   const removeItemBtn = document.createElement('button');
 
   listItem.classList.add('transaction');
-  moneyText.classList.add('money-text');
+  text.classList.add('money-text');
   removeItemBtn.classList.add('remove-transaction-btn');
 
-  listItem.appendChild(moneyText);
+  listItem.appendChild(text);
   listItem.appendChild(removeItemBtn);
 
   removeItemBtn.innerHTML = 'X';
 
-  if (moneyValue > 0) {
-    moneyText.innerHTML = '+$' + moneyValue;
+  if (mapValue > 0) {
+    text.innerHTML = `${mapKey}: +$${mapValue}`;
     incomeList.appendChild(listItem);
   } else {
-    moneyText.innerHTML = '-$' + moneyValue * -1;
+    text.innerHTML = `${mapKey}: -$${mapValue * -1}`;
     outcomeList.appendChild(listItem);
   }
 
   removeItemBtn.addEventListener('click', () => {
     listItem.remove();
-    transactionValues.splice(transactionValues.indexOf(moneyValue), 1);
-    localStorage.setItem(
-      'transactionsValues',
-      JSON.stringify(transactionValues)
-    );
     updateBalance();
   });
 }
 
 function addNewTransaction() {
-  addTransaction(transactionInput.value);
-  transactionValues.push(+transactionInput.value);
-  localStorage.setItem('transactionsValues', JSON.stringify(transactionValues));
+  addTransaction(transactionCategory.value.trim(), +transactionNumber.value);
+
+  transactionMap.set(
+    transactionCategory.value.trim(),
+    +transactionNumber.value
+  );
+
   updateBalance();
-  transactionInput.value = '';
+
+  transactionCategory.value = '';
+  transactionNumber.value = '';
 }
 
 function updateBalance() {
-  console.log(transactionValues);
-  if (transactionValues.length > 0) {
-    balanceNumber.innerHTML = transactionValues.reduce(
-      (acc, current) => acc + current
-    );
+  if (transactionMap.size > 0) {
+    let totalBalance = 0;
+
+    for (let value of transactionMap.values()) {
+      totalBalance += value;
+    }
+
+    if (totalBalance >= 0) {
+      balanceNumber.innerHTML = `$${totalBalance}`;
+    } else {
+      balanceNumber.innerHTML = `-$${totalBalance * -1}`;
+    }
+  } else {
+    balanceNumber.innerHTML = '$0';
   }
 }
 
+// Events
+
 addTransactionBtn.addEventListener('click', () => {
-  if (transactionInput.value != '' && transactionInput.value != 0) {
+  if (
+    (transactionNumber.value != '' && transactionNumber.value != 0) ||
+    transactionCategory.value.trim() != ''
+  ) {
     addNewTransaction();
   } else {
-    alert('Write a number');
+    alert('Fill out the fields');
   }
 });

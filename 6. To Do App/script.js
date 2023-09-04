@@ -2,12 +2,10 @@ const itemNameInput = document.getElementById('item-name-input');
 const addItemBtn = document.getElementById('add-item-btn');
 const itemsList = document.getElementById('items');
 
-let itemsNames = JSON.parse(localStorage.getItem('to do items')) ?? [];
+let toDoHTML = localStorage.getItem('to do items');
 
-if (itemsNames.length > 0) {
-  itemsNames.forEach((item) => {
-    drawItem(item);
-  });
+if (toDoHTML != null) {
+  itemsList.innerHTML = toDoHTML;
 }
 
 // Functions
@@ -31,28 +29,30 @@ function drawItem(itemName) {
   text.innerHTML = itemName;
   removeElementBtn.innerHTML = 'X';
 
+  checkbox.addEventListener('change', () => {
+    checkbox.classList.toggle('checked');
+    localStorage.setItem('to do items', itemsList.innerHTML);
+  });
+
   removeElementBtn.addEventListener('click', () => {
     item.remove();
-    itemsNames.splice(itemsNames.indexOf(itemName), 1);
-    localStorage.setItem('to do items', JSON.stringify(itemsNames));
+    localStorage.setItem('to do items', itemsList.innerHTML);
   });
 
   itemsList.append(item);
 }
 
-function saveNewItem(itemName) {
-  itemsNames.push(itemName);
-  localStorage.setItem('to do items', JSON.stringify(itemsNames));
+function saveToDOM() {
+  localStorage.setItem('to do items', itemsList.innerHTML);
 }
 
 // Events
 
 addItemBtn.addEventListener('click', () => {
   if (itemNameInput.value != '') {
-    saveNewItem(itemNameInput.value);
     drawItem(itemNameInput.value);
-
     itemNameInput.value = '';
+    saveToDOM();
   } else {
     alert('Type something');
   }
