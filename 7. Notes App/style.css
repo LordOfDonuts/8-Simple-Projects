@@ -120,7 +120,17 @@ li.note-item .remove-note-btn:hover {
 }
 
 @media (max-width: 500px) {
+  body {
+    background-color: #fff;
+  }
+
   .container {
     padding: 12px;
+    background-color: transparent;
+    box-shadow: none;
+  }
+
+  li.note-item {
+    margin-top: 16px;
   }
 }

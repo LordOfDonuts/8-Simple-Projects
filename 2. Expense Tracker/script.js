@@ -39,7 +39,9 @@ function addTransaction(mapKey, mapValue) {
 
   removeItemBtn.addEventListener('click', () => {
     listItem.remove();
+    transactionMap.delete(mapKey);
     updateBalance();
+    console.log(transactionMap);
   });
 }
 
@@ -64,6 +66,8 @@ function updateBalance() {
     for (let value of transactionMap.values()) {
       totalBalance += value;
     }
+
+    console.log(totalBalance);
 
     if (totalBalance >= 0) {
       balanceNumber.innerHTML = `$${totalBalance}`;

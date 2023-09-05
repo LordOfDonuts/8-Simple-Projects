@@ -2,12 +2,6 @@ const itemNameInput = document.getElementById('item-name-input');
 const addItemBtn = document.getElementById('add-item-btn');
 const itemsList = document.getElementById('items');
 
-let toDoHTML = localStorage.getItem('to do items');
-
-if (toDoHTML != null) {
-  itemsList.innerHTML = toDoHTML;
-}
-
 // Functions
 
 function drawItem(itemName) {
@@ -29,21 +23,11 @@ function drawItem(itemName) {
   text.innerHTML = itemName;
   removeElementBtn.innerHTML = 'X';
 
-  checkbox.addEventListener('change', () => {
-    checkbox.classList.toggle('checked');
-    localStorage.setItem('to do items', itemsList.innerHTML);
-  });
-
   removeElementBtn.addEventListener('click', () => {
     item.remove();
-    localStorage.setItem('to do items', itemsList.innerHTML);
   });
 
   itemsList.append(item);
-}
-
-function saveToDOM() {
-  localStorage.setItem('to do items', itemsList.innerHTML);
 }
 
 // Events
@@ -52,7 +36,6 @@ addItemBtn.addEventListener('click', () => {
   if (itemNameInput.value != '') {
     drawItem(itemNameInput.value);
     itemNameInput.value = '';
-    saveToDOM();
   } else {
     alert('Type something');
   }
